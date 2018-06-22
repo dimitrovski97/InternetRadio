@@ -1,0 +1,37 @@
+﻿@model IEnumerable<InternetRadioPancakes.Models.Post>
+
+@{
+    ViewBag.Title = "Index";
+}
+<br />
+<br />
+<h2>Вести</h2>
+
+<p>
+    @if (User.IsInRole("Admin") || User.IsInRole("Editor"))
+    {
+        <a href="/Posts/Create/">Додај вест</a>
+    }
+</p>
+ 
+<div style="display:inline-block;width:100%">
+@foreach (var item in Model)
+{
+    <div class="post-icon">
+        <img src="@item.ImageUrl" />
+        <a href="/Posts/Details/@item.ID"><h2>@item.Title</h2></a>
+        <p>@item.Category - Прегледи: @item.Views</p>
+        @if (User.IsInRole("Admin") || User.IsInRole("Editor"))
+    {
+        <a href="/Posts/Edit/@item.ID">Промени</a>
+}
+        @if (User.IsInRole("Admin"))
+    {
+        <a href="/Posts/Delete/@item.ID"> | Избриши</a>
+}
+
+    </div>
+
+}
+</div>
+

@@ -1,0 +1,35 @@
+﻿@model IEnumerable<InternetRadioPancakes.Models.Category>
+
+@{
+    ViewBag.Title = "Категории";
+}
+<br />
+<br />
+<h2>Категории</h2>
+
+<p>
+    @if (User.IsInRole("Admin")){
+    <a href="/Categories/Create/">Додај нова</a>
+    }
+</p>
+<table class="table">
+
+    @foreach (var item in Model)
+    {
+    <div class="categoryDiv">
+        <center>
+            @Html.ActionLink(item.Title, "Details", new { id = item.ID },new { @class = "catTitle"})
+            <img src="@item.ImageUrl" style="width:100%" /><br />
+            <center>
+                @if (User.IsInRole("Admin") || User.IsInRole("Editor")) {
+                <a href="/Categories/Edit/@item.ID">Промени</a>
+                }
+                @if (User.IsInRole("Admin")){
+                <a href="/Categories/Delete/@item.ID"> | Избриши</a>
+                <a href="/Categories/AddToCat/@item.ID"> | Додај вести</a>
+                }
+            </center>
+    </div>
+    }
+
+</table>

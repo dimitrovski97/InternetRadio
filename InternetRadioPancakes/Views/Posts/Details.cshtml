@@ -1,0 +1,39 @@
+﻿@model InternetRadioPancakes.Models.Post
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2></h2>
+<div style="width:25%;float:right;margin-top:30px;">
+    <center>
+        <h2>Слушај Радио</h2>
+        <a href="/Home/ListenRadio/">
+            <img src="~/Content/images/radio.png" style="width:85%" />
+        </a>
+    </center>
+    <center>
+        <h2>Реклама</h2>
+        <a href="/Home/Marketing/">
+            <img src="~/Content/images/advertisment.png" style="width:85%;border-radius:5%" />
+        </a>
+    </center>
+</div>
+<div class="post-title">
+    <h3>@Model.Title</h3>
+    <p>@Model.Category | @Model.addedTime | Прегледи: @Model.Views</p>
+</div>
+<div class="post-context">
+    <center><img src="@Model.ImageUrl" style="height:250px;margin-bottom:10px"/></center>
+    <p>
+        @Model.Context
+    </p>
+</div>
+
+<p>
+    @if (User.IsInRole("Admin") || User.IsInRole("Editor"))
+    {
+        <a href="/Posts/Edit/@Model.ID">Промени | </a>
+    }
+    @Html.ActionLink("Врати се назад", "Index")
+</p>

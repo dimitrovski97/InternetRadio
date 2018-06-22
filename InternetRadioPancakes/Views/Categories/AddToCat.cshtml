@@ -1,0 +1,17 @@
+﻿@model InternetRadioPancakes.Models.AddToCategory
+@{
+    ViewBag.Title = "Додај во категорија";
+}
+
+<h2>Додај во категорија @ViewBag.StoreName</h2>
+@using (Html.BeginForm("AddToCat", "Categories"))
+{
+<div class="form-group">
+    @Html.DropDownListFor(m => m.postID, new SelectList(Model.posts, "ID", "Title"), new { @class = "form-control" })
+    <br />
+    <br />
+    @Html.HiddenFor(m=>m.categoryID)
+    <button type="submit" class="btn btn-defaulf">Додај</button>
+</div>
+}
+

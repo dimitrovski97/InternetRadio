@@ -1,0 +1,24 @@
+﻿@model InternetRadioPancakes.Models.AddToRoleModel
+@{
+    /**/
+
+    ViewBag.Title = "Додај привилегии";
+}
+</br>
+</br>
+</br>
+<h2>Додај привилегии</h2>
+@using (Html.BeginForm("AddUserToRole", "Account"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Email)
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.Label("Тип на корисник")
+        @Html.DropDownListFor(m => m.selectedRole, new SelectList(Model.roles), new { @class = "form-control" })
+        <br />
+        <button type="submit" class="btn btn-defaulf">Save</button>
+    </div>
+}
+
